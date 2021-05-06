@@ -5,7 +5,10 @@ name = "pypi"
 
 [packages]
 apache-airflow = {extras = ["postgres"], version = "*"}
-tickerdata = {editable = true, path = "./../tickerdata"}
+tickerdata = {editable = true, path = "./tickerdata"}
+pandas = "*"
+python-binance = "*"
+pycoingecko = "*"
 
 [dev-packages]
 
