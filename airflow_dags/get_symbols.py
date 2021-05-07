@@ -23,7 +23,7 @@ default_args = {
 @dag("get_symbols", 
     default_args=default_args,
     start_date=days_ago(1),
-    schedule_interval=None, 
+    schedule_interval='@daily', 
     tags=['crypto'])
 def get_symbols(market):
     """
@@ -64,21 +64,18 @@ def get_symbols(market):
         Returns
             - None
         """
-        print("Initial : ", symbol_list)
         symbol_list = json.loads(symbol_list)['symbols']
-        print("pythonic : ", symbol_list, type(symbol_list))
         df_symbols = pg_hook.get_pandas_df("SELECT * FROM symbols")
-        # import pdb; pdb.set_trace()
         new_symbols = pd.DataFrame({
             'symbol_name': pd.Series([symbol for symbol in symbol_list
-                if symbol not in df_symbols.symbol_name]),
+                if symbol not in df_symbols.symbol_name.unique()]),
             'symbol_last_updated_at': datetime.now().timestamp(),
-            'symbol_created_at': datetime.now().timestamp()
+            'symbol_created_at': datetime.now().timestamp(),
+            # TODO: make exchange id linking robust 
+            'exchange_id': 1 if market == 'crypto' else NULL
         })
         print(new_symbols.head())
 
-        # TODO: make exchange id linking robust
-        new_symbols.loc[:, 'exchange_id'] = 1 if market == 'crypto' else NULL
         LOGGER.info("Getting {:d} new symbols".format(new_symbols.shape[0]))
         if new_symbols.shape[0]:
             pg_hook.write_pandas_df(
