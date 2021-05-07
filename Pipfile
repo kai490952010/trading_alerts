@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-apache-airflow = {extras = ["postgres"], version = "*"}
+apache-airflow = {extras = ["amazon"], version = "*"}
 tickerdata = {editable = true, path = "./tickerdata"}
 pandas = "*"
 python-binance = "*"
