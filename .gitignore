@@ -14,6 +14,7 @@ airflow*.out
 airflow_logs/
 airflow.cfg
 tickerdata/
+*debug.py
 
 # Distribution / packaging
 .Python
