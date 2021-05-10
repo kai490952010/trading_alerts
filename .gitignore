@@ -11,9 +11,8 @@ airflow*.pid
 airflow*.log
 airflow*.err
 airflow*.out
-airflow_logs/
+trading_alerts/logs/
 airflow.cfg
-tickerdata/
 *debug.py
 
 # Distribution / packaging
