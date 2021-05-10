@@ -5,40 +5,49 @@ Installation
 ============
 
 
-Stable release
---------------
+Development release
+-------------------
 
-To install OHLC data pipeline, run this command in your terminal:
+Clone repo and run ``pipenv install``.
+This will install the necessary dependencies.
 
-.. code-block:: console
+To setup metadata database:
+1. Create Postgres metadata database
 
-    $ pip install ohlc_data_pipeline
+::
 
-This is the preferred method to install OHLC data pipeline, as it will always install the most recent stable release.
+    CREATE DATABASE airflow;
 
-If you don't have `pip`_ installed, this `Python installation guide`_ can guide
-you through the process.
+2. Create airflow user:
 
-.. _pip: https://pip.pypa.io
-.. _Python installation guide: http://docs.python-guide.org/en/latest/starting/installation/
+   ::
+
+       CREATE USER USERNAME WITH PASSWORD '<password>';
+       GRANT ALL PRIVILEGES ON DATABASE <database> TO USERNAME;
+
+3. ``export AIRFLOW\_HOME=$(pwd)``
+
+4. Run: ``airflow db init`` to create the base config (which needs
+   sqlite only)
+
+5. Now change sql\_alchemy\_conn variable to a postgres db connection
+   string, for which connection parameters were created above.
+   And run: ``airflow db reset``.
+
+   This should create the necessary metadata database for data collection
+   to proceed.
 
 
 From sources
 ------------
 
-The sources for OHLC data pipeline can be downloaded from the `Github repo`_.
+The sources for Trading alerts can be downloaded from the `Github repo`_.
 
 You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/kai490952010/ohlc_data_pipeline
-
-Or download the `tarball`_:
-
-.. code-block:: console
-
-    $ curl -OJL https://github.com/kai490952010/ohlc_data_pipeline/tarball/master
+    $ git clone git://github.com/kai490952010/trading_alerts
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +56,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/kai490952010/ohlc_data_pipeline
-.. _tarball: https://github.com/kai490952010/ohlc_data_pipeline/tarball/master
+.. _Github repo: https://github.com/kai490952010/trading_alerts
+.. _tarball: https://github.com/kai490952010/trading_alerts/tarball/master

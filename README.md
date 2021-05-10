@@ -1,9 +1,12 @@
-==================
-OHLC data pipeline
-==================
+Trading alerts
+==============
 
+This project intends to combine varying sources of OHLC financial data
+to automate trading signals and make it easier to watch and react to
+traded financial assets.
 
-
+Currently, crypto markets are being focused on. Soon, the intention is
+to pull fiat markets from different regions as well.
 
 
 
@@ -13,18 +16,19 @@ Installation
 Run `pipenv install` using existing file.
 
 To setup metadata database:
-1. Create Postgres metadata database 
+1. Create Postgres metadata database
 ```
-	CREATE DATABASE airflow;
+CREATE DATABASE airflow;
 ```
 2. Create airflow user:
 ```
-CREATE USER USERNAME WITH PASSWORD '<password>';
-GRANT ALL PRIVILEGES ON DATABASE <database> TO USERNAME;
+CREATE USER <username> WITH PASSWORD '<password>';
+GRANT ALL PRIVILEGES ON DATABASE <database> TO <username>;
 ```
-3. export AIRFLOW_HOME=$(pwd)
-4. Run: `airflow db init` to create the base config (which needs sqlite only)
-5. Now change sql_alchemy_conn variable to a postgres db connection string, for which
+3. `cd trading_alerts/trading_alerts`
+4. `export AIRFLOW_HOME=$(pwd)`
+5. Run: `airflow db init` to create the base config (which needs sqlite only)
+6. Now change sql_alchemy_conn variable to a postgres db connection string, for which
 connection parameters were created above.
 
 

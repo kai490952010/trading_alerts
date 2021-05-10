@@ -1,4 +1,4 @@
-Welcome to OHLC data pipeline's documentation!
+Welcome to Trading alerts's documentation!
 ======================================
 
 .. toctree::
@@ -8,10 +8,9 @@ Welcome to OHLC data pipeline's documentation!
    readme
    installation
    usage
-   modules
-   contributing
-   authors
-   history
+
+.. automodule:: trading_alerts
+    :members:
 
 Indices and tables
 ==================

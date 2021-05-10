@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use OHLC data pipeline in a project::
+To use Trading alerts in a project::
 
     import ohlc_data_pipeline

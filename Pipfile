@@ -5,10 +5,13 @@ name = "pypi"
 
 [packages]
 apache-airflow = {extras = ["amazon"], version = "*"}
-tickerdata = {editable = true, path = "./tickerdata"}
 pandas = "*"
 python-binance = "*"
 pycoingecko = "*"
+pre-commit = "*"
+psycopg2 = "*"
+tickerdata = {path = "./../tickerdata"}
+apache-airflow-providers-postgres = "*"
 
 [dev-packages]
 

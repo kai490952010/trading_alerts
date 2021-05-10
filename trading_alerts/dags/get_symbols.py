@@ -1,34 +1,34 @@
 import json
 import logging
+from datetime import datetime
 
-LOGGER = logging.getLogger("GetSymbols")
-
+import pandas as pd
 from airflow.decorators import dag, task
 from airflow.utils.dates import days_ago
 from custom_postgreshook import CustomPostgresHook
-from airflow.providers.postgres.operators.postgres import PostgresOperator
-import pandas as pd
-
-from datetime import datetime
 from tickerdata.cryptocurrency import CoingeckoAPI
-from tickerdata.meta import metaApi
 
-POSTGRES_CONN_ID = 'postgres_default'
+# from tickerdata.meta import metaApi
+
+LOGGER = logging.getLogger("GetSymbols")
+POSTGRES_CONN_ID = "postgres_default"
 pg_hook = CustomPostgresHook(postgres_conn_id=POSTGRES_CONN_ID)
 default_args = {
-    'owner': 'airflow',
+    "owner": "airflow",
 }
 
 
-@dag("get_symbols", 
+@dag(
+    "get_symbols",
     default_args=default_args,
     start_date=days_ago(1),
-    schedule_interval='@daily', 
-    tags=['crypto'])
+    schedule_interval="@daily",
+    tags=["crypto"],
+)
 def get_symbols(market):
     """
     ### Incremental data refresh
-    Pulls and loads incremental data for a symbol between a given 
+    Pulls and loads incremental data for a symbol between a given
     time range.
     It can be used to pull data for different time intervals.
     """
@@ -36,8 +36,11 @@ def get_symbols(market):
     @task()
     def find_symbols(market):
         """
-        Gets the most popular X number of symbols and stores them in the symbol table.
-        For crypto exchanges, by default, 100 symbols are shown.
+        Gets the most popular X number of symbols and stores them
+        in the symbol table.
+        For crypto exchanges, by default, 100 symbols sorted by market cap
+        are extracted.
+
         Args
             - market (str): identifies which market to pull symbols for.
                 Expected values: crypto, shanghai, nyse
@@ -45,13 +48,13 @@ def get_symbols(market):
         Returns
             - Returns None
         """
-        if market == 'crypto':
+        if market == "crypto":
             api = CoingeckoAPI()
-            coinpairs = api.get_coin_pairs('binance')
+            coinpairs = api.get_coin_pairs("binance")
             return json.dumps({"symbols": coinpairs})
-        elif market == 'shanghai':
+        elif market == "shanghai":
             raise NotImplementedError
-        elif market == 'nyse':
+        elif market == "nyse":
             raise NotImplementedError
 
     @task()
@@ -64,28 +67,38 @@ def get_symbols(market):
         Returns
             - None
         """
-        symbol_list = json.loads(symbol_list)['symbols']
+        symbol_list = json.loads(symbol_list)["symbols"]
         df_symbols = pg_hook.get_pandas_df("SELECT * FROM symbols")
-        new_symbols = pd.DataFrame({
-            'symbol_name': pd.Series([symbol for symbol in symbol_list
-                if symbol not in df_symbols.symbol_name.unique()]),
-            'symbol_last_updated_at': datetime.now().timestamp(),
-            'symbol_created_at': datetime.now().timestamp(),
-            # TODO: make exchange id linking robust 
-            'exchange_id': 1 if market == 'crypto' else NULL
-        })
+        new_symbols = pd.DataFrame(
+            {
+                "symbol_name": pd.Series(
+                    [
+                        symbol
+                        for symbol in symbol_list
+                        if symbol not in df_symbols.symbol_name.unique()
+                    ]
+                ),
+                "symbol_last_updated_at": datetime.now().timestamp(),
+                "symbol_created_at": datetime.now().timestamp(),
+                # TODO: make exchange id linking robust
+                "exchange_id": 1 if market == "crypto" else None,
+            }
+        )
         print(new_symbols.head())
 
         LOGGER.info("Getting {:d} new symbols".format(new_symbols.shape[0]))
         if new_symbols.shape[0]:
             pg_hook.write_pandas_df(
+                # fmt: off
                 new_symbols.to_json(),
-                name='symbols',
-                if_exists='append',
-                index=False)
+                name="symbols",
+                if_exists="append",
+                index=False
+                # fmt: on
+            )
 
     symbol_list = find_symbols(market)
     load_symbols(symbol_list, market)
 
 
-get_symbols_dag = get_symbols(market='crypto')
+get_symbols_dag = get_symbols(market="crypto")

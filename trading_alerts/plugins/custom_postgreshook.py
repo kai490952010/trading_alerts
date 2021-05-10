@@ -1,10 +1,10 @@
 from contextlib import closing
 
-from airflow.providers.postgres.hooks.postgres import PostgresHook
 import pandas as pd
+from airflow.providers.postgres.hooks.postgres import PostgresHook
+
 
 class CustomPostgresHook(PostgresHook):
-
     def write_pandas_df(self, json_df, parameters=None, **kwargs):
         """
         Executes the sql and returns a pandas dataframe
@@ -18,7 +18,7 @@ class CustomPostgresHook(PostgresHook):
         """
         df = pd.read_json(json_df)
 
-        with closing(self.get_conn()) as conn:
+        with closing(self.get_conn()) as conn:  # NOQA
             # get uri connection from parent class
             connection = super(PostgresHook, self).get_uri()
             df.to_sql(con=connection, **kwargs)
