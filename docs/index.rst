@@ -1,5 +1,5 @@
 Welcome to Trading alerts's documentation!
-======================================
+==========================================
 
 .. toctree::
    :maxdepth: 2
@@ -7,7 +7,9 @@ Welcome to Trading alerts's documentation!
 
    readme
    installation
-   usage
+   functionality
+   trading_alerts.dags
+   trading_alerts.plugins
 
 .. automodule:: trading_alerts
     :members:

@@ -7,14 +7,15 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 class CustomPostgresHook(PostgresHook):
     def write_pandas_df(self, json_df, parameters=None, **kwargs):
         """
-        Executes the sql and returns a pandas dataframe
+        Convert JSON object to Pandas dataframe and writes to table.
 
-        :param df: the pandas dataframe to be written
-        :type sql: str or list
-        :param parameters: The parameters to render the SQL query with.
-        :type parameters: dict or iterable
-        :param kwargs: (optional) passed into pandas.io.sql.read_sql method
-        :type kwargs: dict
+        Args
+            json_df (json): dataframe which is passed in as a JSON object.
+            kwargs (python dict): (optional) passed into
+                pandas.io.sql.read_sql method to control how data is
+                written.
+        Returns
+            None
         """
         df = pd.read_json(json_df)
 

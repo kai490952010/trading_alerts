@@ -27,10 +27,8 @@ default_args = {
 )
 def get_symbols(market):
     """
-    ### Incremental data refresh
-    Pulls and loads incremental data for a symbol between a given
-    time range.
-    It can be used to pull data for different time intervals.
+    Gets top 100 symbols by market cap for which
+    historical and incremental data refresh dags will be run.
     """
 
     @task()

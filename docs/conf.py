@@ -20,11 +20,14 @@
 import os
 import sys
 
+os.environ["AIRFLOW_HOME"] = "../trading_alerts"
 sys.path.insert(0, os.path.abspath(".."))
-sys.path.insert(0, os.path.abspath("../trading_alerts"))
+sys.path.insert(0, os.path.abspath("../trading_alerts/dags"))
+sys.path.insert(0, os.path.abspath("../trading_alerts/plugins"))
 
 import trading_alerts  # noqa: E402
 
+print(sys.path)
 # -- General configuration ---------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.

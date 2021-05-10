@@ -22,7 +22,7 @@ default_args = {
 )
 def incremental_data_refresh(symbol, start_ts, end_ts, granularity):
     """
-    ### Incremental data refresh
+    Incremental data refresh
     Pulls and loads incremental data for a symbol between a given
     time range.
     It can be used to pull data for different time intervals.
@@ -113,6 +113,12 @@ def incremental_data_refresh(symbol, start_ts, end_ts, granularity):
         load(order_data, granularity)
 
 
-incremental_data_refresh_dag = incremental_data_refresh(
-    symbol="BTCUSDT", start_ts=1620211249, end_ts=1620221249, granularity="1m"
-)
+if __name__ == "__main__":
+    incremental_data_refresh_dag = incremental_data_refresh(
+        # fmt off
+        symbol="BTCUSDT",
+        start_ts=1620211249,
+        end_ts=1620221249,
+        granularity="1m"
+        # fmt on
+    )

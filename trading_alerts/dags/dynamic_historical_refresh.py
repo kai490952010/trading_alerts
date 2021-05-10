@@ -31,6 +31,7 @@ def create_historical_refresh_dag(
     Binance's S3 bucket to load historical data quickly.
     S3 Bucket containing monthly/daily data can be used to load
     data containing different intervals.
+
     Args:
         schedule: schedule at which DAG should run.
         symbol (str): Stock/Crypto symbol which will be used to pull data.
@@ -169,7 +170,10 @@ def create_subdag_operator(
     # fmt: on
 ):
     """
+
+    :meta private:
     Function creates dag which will be consumed by SubDagOperator.
+
     Args:
         schedule: schedule at which DAG should run.
         symbol (str): Stock/Crypto symbol which will be used to pull data.
@@ -178,8 +182,9 @@ def create_subdag_operator(
                 Ex: 1m, 5m etc.
         bucket (str): Binance's S3 bucket from which data is procured.
         prefix (str): Prefix to S3 folder within bucket.
+
     Returns:
-        instance of Airflow DAG.
+        instance of Subdag operator.
     """
     subdag_id_suffix = "historical_data_refresh_{}".format(str(symbol))
     parent_dag_id = parent_dag.dag_id.split(".")[0]
@@ -205,6 +210,8 @@ def create_subdag_operator(
 
 def create_subdag_operators(parent_dag, symbol_list):
     """
+    :meta private:
+
     Private function to create subdag operators based on
     given parent dag and list of symbols.
     """
