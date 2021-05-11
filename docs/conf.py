@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.abspath("../trading_alerts/plugins"))
 
 import trading_alerts  # noqa: E402
 
-print(sys.path)
+# print(sys.path)
 # -- General configuration ---------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
