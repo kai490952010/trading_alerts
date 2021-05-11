@@ -1,3 +1,5 @@
+[![Actions Status](https://github.com/kai490952010/trading_alerts/workflows/Build/badge.svg)](https://github.com/kai490952010/trading_alerts/actions)
+
 Trading alerts
 ==============
 

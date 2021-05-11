@@ -9,6 +9,8 @@ Architecture
   :width: 800
   :alt: Overall project architecture
 
+PS: Completed sections are marked in non-grey color. Rest are work in progress.
+
 The project can be separated into 3 python packages:
 
 1.  trading-alerts (current package) - this will contain the data pipeline package
@@ -20,6 +22,7 @@ including the ones outline in the introduction section will be housed here.
 3. `tickerdata`_ - this will hold wrappers around APIs used for external
 data access. For example: with regards to crypto currency data - Binance & CoinGecko APIs
 will be housed within this package.
+
 
 Execution model of data pipeline
 --------------------------------

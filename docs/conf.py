@@ -25,6 +25,7 @@ sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("../trading_alerts/dags/"))
 sys.path.insert(0, os.path.abspath("../trading_alerts/plugins/"))
 
+
 import trading_alerts  # noqa: E402
 
 # print(sys.path)

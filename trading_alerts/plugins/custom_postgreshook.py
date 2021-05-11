@@ -9,14 +9,15 @@ class CustomPostgresHook(PostgresHook):
         """
         Convert JSON object to Pandas dataframe and writes to table.
 
-        Args
+        Args:
             json_df (json): dataframe which is passed in as a JSON object.
-            kwargs (python dict): (optional) passed into
+            kwargs (dict): (optional) passed into
                 pandas.io.sql.read_sql method to control how data is
                 written.
-        Returns
+        Returns:
             None
         """
+
         df = pd.read_json(json_df)
 
         with closing(self.get_conn()) as conn:  # NOQA
