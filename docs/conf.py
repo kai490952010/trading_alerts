@@ -20,27 +20,11 @@
 import os
 import sys
 
-import mock
-
 os.environ["AIRFLOW_HOME"] = "../trading_alerts"
 sys.path.insert(0, os.path.abspath(".."))
 sys.path.insert(0, os.path.abspath("../trading_alerts/dags/"))
 sys.path.insert(0, os.path.abspath("../trading_alerts/plugins/"))
 
-
-MOCK_MODULES = [
-    "apache-airflow",
-    "pandas",
-    "python-binance",
-    "pycoingecko",
-    "pre-commit",
-    "psycopg2",
-    "apache-airflow-providers-postgres",
-    "tickerdata",
-]
-
-for mod_name in MOCK_MODULES:
-    sys.modules[mod_name] = mock.Mock()
 
 import trading_alerts  # noqa: E402
 
