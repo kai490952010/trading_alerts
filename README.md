@@ -1,5 +1,7 @@
 [![Actions Status](https://github.com/kai490952010/trading_alerts/workflows/Build/badge.svg)](https://github.com/kai490952010/trading_alerts/actions)
 
+[![Documentation Status](https://readthedocs.org/projects/trading-alerts/badge/?version=latest)](https://trading-alerts.readthedocs.io/en/latest/?badge=latest)
+
 Trading alerts
 ==============
 
