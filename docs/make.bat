@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=ohlc_data_pipeline
+set SPHINXPROJ=trading_alerts
 
 if "%1" == "" goto help
 

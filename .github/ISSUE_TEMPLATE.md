@@ -1,4 +1,4 @@
-* OHLC data pipeline version:
+* Trading alerts version:
 * Python version:
 * Operating System:
 

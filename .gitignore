@@ -7,7 +7,14 @@ __pycache__/
 *.so
 
 # Airflow files
-airflow*
+airflow*.pid
+airflow*.log
+airflow*.err
+airflow*.out
+trading_alerts/logs/
+airflow.cfg
+*debug.py
+trading_alerts/logs/scheduler/latest
 
 # Distribution / packaging
 .Python

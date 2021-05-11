@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = python -msphinx
-SPHINXPROJ    = ohlc_data_pipeline
+SPHINXPROJ    = trading_alerts
 SOURCEDIR     = .
 BUILDDIR      = _build
 

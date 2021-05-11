@@ -1,17 +1,19 @@
-Welcome to OHLC data pipeline's documentation!
-======================================
+Welcome to Trading alerts's documentation!
+==========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    readme
    installation
-   usage
-   modules
-   contributing
-   authors
-   history
+   functionality
+   trading_alerts.dags
+   trading_alerts.plugins
+
+.. automodule:: trading_alerts
+    :members:
+
 
 Indices and tables
 ==================

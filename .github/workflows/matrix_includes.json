@@ -1,0 +1,13 @@
+[{
+		"py_version": "3.6",
+		"runOn": "always"
+	},
+	{
+		"py_version": "3.7",
+		"runOn": "master"
+	},
+	{
+		"py_version": "3.8",
+		"runOn": "master"
+	}
+]

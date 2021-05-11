@@ -4,10 +4,18 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-apache-airflow = {extras = ["postgres"], version = "*"}
-tickerdata = {editable = true, path = "./../tickerdata"}
+apache-airflow = {extras = ["amazon"], version = "*"}
+pandas = "*"
+python-binance = "*"
+pycoingecko = "*"
+pre-commit = "*"
+psycopg2 = "*"
+apache-airflow-providers-postgres = "*"
+tickerdata = {editable = true, ref = "dev", git = "https://github.com/kai490952010/tickerdata.git"}
+sphinx = "*"
 
 [dev-packages]
+sphinx = "*"
 
 [requires]
 python_version = "3.8"
