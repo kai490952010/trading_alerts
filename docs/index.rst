@@ -2,7 +2,7 @@ Welcome to Trading alerts's documentation!
 ==========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
 
    readme
@@ -13,6 +13,7 @@ Welcome to Trading alerts's documentation!
 
 .. automodule:: trading_alerts
     :members:
+
 
 Indices and tables
 ==================

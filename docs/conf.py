@@ -22,8 +22,8 @@ import sys
 
 os.environ["AIRFLOW_HOME"] = "../trading_alerts"
 sys.path.insert(0, os.path.abspath(".."))
-sys.path.insert(0, os.path.abspath("../trading_alerts/dags"))
-sys.path.insert(0, os.path.abspath("../trading_alerts/plugins"))
+sys.path.insert(0, os.path.abspath("../trading_alerts/dags/"))
+sys.path.insert(0, os.path.abspath("../trading_alerts/plugins/"))
 
 import trading_alerts  # noqa: E402
 
@@ -39,7 +39,8 @@ import trading_alerts  # noqa: E402
 # fmt: off
 extensions = ["sphinx.ext.autodoc",
               "sphinx.ext.coverage",
-              "sphinx.ext.napoleon"]
+              "sphinx.ext.napoleon",
+              "sphinx.ext.autosectionlabel"]
 # fmt: on
 
 # Add any paths that contain templates here, relative to this directory.
@@ -78,7 +79,12 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
+exclude_patterns = [
+    "_build",
+    "Thumbs.db",
+    ".DS_Store",
+    "../trading_alerts/webserver_config.py",
+]
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "sphinx"
@@ -92,7 +98,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = "alabaster"
+html_theme = "classic"
 
 # Theme options are theme-specific and customize the look and feel of a
 # theme further.  For a list of options available for each theme, see the

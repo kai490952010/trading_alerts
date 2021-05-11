@@ -21,6 +21,14 @@ trading\_alerts.trading\_alerts module
    :undoc-members:
    :show-inheritance:
 
+trading\_alerts.webserver\_config module
+----------------------------------------
+
+.. automodule:: trading_alerts.webserver_config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Module contents
 ---------------
 

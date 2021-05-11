@@ -19,7 +19,7 @@ to small group of friends.
 
 
 Why this project
-***************
+****************
 
 Many such tools exist in the market which
 provide real time updates for  a select set of traded signals. Majority of
@@ -37,8 +37,7 @@ Dynamic graphs are useful when your pipeline depends on varying number of
 inputs which cannot be fixed while designing the pipeline. For example - a
 sensor that monitors for a new key in a S3 bucket and hands of the processing
 to a new DAG once it finds that new file  has been created. The use case for
-this project is discussed in more detail in the internals [todo - add
-hyperlink.]
+this project is discussed in more detail in the `Internals`_ section.
 
 Airflow provides a way to launch dynamic graphs via 3 operators -
 TriggerDagRunOperator,  SubDagOperator, ExternalSensor operator. I chose to
