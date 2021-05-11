@@ -216,24 +216,23 @@ def create_subdag_operators(parent_dag, symbol_list):
     given parent dag and list of symbols.
     """
     subdags = []
-    for index, row in symbol_list.iterrows():
-        symbol_id, symbol = row.loc["symbol_id"], row.loc["symbol_name"]
-        granularity = "1m"
-        bucket = "data.binance.vision"
-        prefix = "data/spot/{frequency}/klines/{symbol}/{granularity}/"
-        schedule = "@once"
-        subdags.append(
-            create_subdag_operator(
-                parent_dag,
-                schedule,
-                symbol,
-                granularity,
-                bucket,
-                prefix,
-                symbol_id,
-                default_args,
-            )
+    granularity = "1m"
+    bucket = "data.binance.vision"
+    prefix = "data/spot/{frequency}/klines/{symbol}/{granularity}/"
+    schedule = "@once"
+    subdags = [
+        create_subdag_operator(
+            parent_dag,
+            schedule,
+            row.loc["symbol_name"],
+            granularity,
+            bucket,
+            prefix,
+            row.loc["symbol_id"],
+            default_args,
         )
+        for index, row in symbol_list.iterrows()
+    ]
     # chain subdag-operators together
     chain(*subdags)
     return subdags
